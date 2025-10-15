@@ -1,0 +1,98 @@
+/* Basic global layout */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Header section */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+p {
+  text-align: center;
+  color: #555;
+}
+
+/* Upload section */
+.upload-box {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px dashed #999;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.upload-box button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.upload-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Question input */
+.question-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.question-box input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  outline: none;
+}
+
+.question-box button {
+  padding: 8px 14px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.question-box button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.question-box button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+/* Response box */
+.response-box {
+  margin-top: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.response-box h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.response-box p {
+  margin: 5px 0;
+  white-space: pre-wrap;
+}
