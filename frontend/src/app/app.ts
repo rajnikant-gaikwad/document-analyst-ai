@@ -45,7 +45,7 @@ export class App {
   private http = inject(HttpClient);
   
   // Backend base URL (adjust if running elsewhere)
-  backendUrl = 'http://localhost:8000';
+  backendUrl = 'http://localhost:5000/api';
 
   /** Document token injected for DOM access if ever needed */
   private document = inject(DOCUMENT);

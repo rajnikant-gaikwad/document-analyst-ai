@@ -1,27 +1,31 @@
 import express from "express";
 import multer from "multer";
-import { loadPDFandStore } from "../utils/pdfLoader.js";
+import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const router = express.Router();
 
-// Multer setup: store uploaded files temporarily
+// Configure multer for file uploads
 const storage = multer.diskStorage({
-  destination: "./uploads",
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../../uploads"));
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 const upload = multer({ storage });
 
 // POST /api/upload
-router.post("/", upload.single("file"), async (req, res) => {
-  try {
-    const filePath = req.file.path;
-    // Process PDF: extract text + create embeddings + save to Chroma
-    await loadPDFandStore(filePath);
-    res.json({ message: "File uploaded and indexed successfully!" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "File processing failed." });
+router.post("/", upload.single("file"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
   }
+  // You can save file info to DB or process here
+  res.json({ filename: req.file.filename, message: "File uploaded successfully" });
 });
 
 export default router;

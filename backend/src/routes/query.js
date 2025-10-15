@@ -1,12 +1,15 @@
 import express from "express";
-import { answerQuestion } from "../utils/chain.js";
 const router = express.Router();
 
 // POST /api/query
 router.post("/", async (req, res) => {
-  const { question } = req.body;
+  const { question, filename } = req.body;
+  if (!question || !filename) {
+    return res.status(400).json({ error: "Missing question or filename" });
+  }
   try {
-    const answer = await answerQuestion(question);
+    // Dummy AI response logic - Replace with real AI logic
+    const answer = `Pretend AI answer for "${question}" from "${filename}"`;
     res.json({ answer });
   } catch (err) {
     console.error(err);
